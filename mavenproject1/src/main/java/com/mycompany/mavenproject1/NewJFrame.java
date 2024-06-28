@@ -4,6 +4,13 @@
  */
 package com.mycompany.mavenproject1;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author mdrumond
@@ -14,8 +21,18 @@ public class NewJFrame extends javax.swing.JFrame {
      * Creates new form NewJFrame
      */
     public NewJFrame() {
+        
         initComponents();
     }
+            Connection conexao = null;
+            PreparedStatement statement = null;
+            String url = "jdbc:mysql://localhost/meu_projeto";
+            String usuario = "root";
+            String senha = "";
+            
+    
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -38,7 +55,6 @@ public class NewJFrame extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(850, 500));
 
         jLabel1.setIcon(new javax.swing.ImageIcon("P:\\TURMAS\\HTC-DDS-17\\Marcus Guedes\\meu_projetoGit\\meu_projeto\\mavenproject1\\src\\main\\java\\imagens\\tarefa2.png")); // NOI18N
 
@@ -48,14 +64,11 @@ public class NewJFrame extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         jLabel3.setText("Login");
 
-        jTextField1.setText("jTextField1");
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField1ActionPerformed(evt);
             }
         });
-
-        jTextField2.setText("jTextField2");
 
         jLabel4.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel4.setText("E-mail");
@@ -157,6 +170,41 @@ public class NewJFrame extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        try{
+
+
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost/meu_projeto","root","");
+            conexao = DriverManager.getConnection(url, usuario,senha); 
+
+            String email = jTextField1.getText();
+            String senha = jTextField2.getText();
+            
+            Statement stm = con.createStatement();
+            
+           String sql = "SELECT * FROM usuarios WHERE email= ? AND senha= ?";
+            PreparedStatement pstmt = con.prepareStatement(sql);
+            pstmt.setString(1, email);
+            pstmt.setString(2, senha);
+            ResultSet rs = pstmt.executeQuery();
+
+          
+               if(rs.next()){
+              
+              dispose();
+              cadastro_projetos cad = new cadastro_projetos();
+              cad.show();
+            }else{
+                JOptionPane.showMessageDialog(this, "E-mail ou senha incorretos");
+                jTextField1.setText("");
+                jTextField2.setText("");
+            }
+            
+            con.close();
+            
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
