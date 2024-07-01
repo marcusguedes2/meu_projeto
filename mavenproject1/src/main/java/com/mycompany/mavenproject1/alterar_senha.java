@@ -84,7 +84,7 @@ public class alterar_senha extends javax.swing.JFrame {
         getContentPane().add(jButton2);
         jButton2.setBounds(440, 330, 110, 30);
 
-        jLabel6.setIcon(new javax.swing.ImageIcon("P:\\TURMAS\\HTC-DDS-17\\Marcus Guedes\\Controle_estoque\\meu_projeto\\mavenproject1\\src\\main\\java\\imagens\\tarefa2.png")); // NOI18N
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/tarefa2.png"))); // NOI18N
         getContentPane().add(jLabel6);
         jLabel6.setBounds(10, 10, 90, 90);
 
