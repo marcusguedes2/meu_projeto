@@ -138,7 +138,7 @@
     <Component class="javax.swing.JLabel" name="jLabel6">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="2" name="P:\TURMAS\HTC-DDS-17\Marcus Guedes\Controle_estoque\meu_projeto\mavenproject1\src\main\java\imagens\tarefa2.png"/>
+          <Image iconType="3" name="/imagens/tarefa2.png"/>
         </Property>
       </Properties>
       <Constraints>
