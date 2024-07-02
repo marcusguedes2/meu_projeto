@@ -52,12 +52,12 @@ public class cadastro_tarefas extends javax.swing.JFrame {
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        nome_tarefa = new javax.swing.JTextField();
         jTextField2 = new javax.swing.JTextField();
         jTextField6 = new javax.swing.JTextField();
         jButton4 = new javax.swing.JButton();
         jComboBox1 = new javax.swing.JComboBox<>();
-        jComboBox2 = new javax.swing.JComboBox<>();
+        situacao_tarefa = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(850, 570));
@@ -177,13 +177,13 @@ public class cadastro_tarefas extends javax.swing.JFrame {
         getContentPane().add(jLabel12);
         jLabel12.setBounds(490, 230, 60, 17);
 
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        nome_tarefa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                nome_tarefaActionPerformed(evt);
             }
         });
-        getContentPane().add(jTextField1);
-        jTextField1.setBounds(280, 190, 150, 30);
+        getContentPane().add(nome_tarefa);
+        nome_tarefa.setBounds(280, 190, 150, 30);
         getContentPane().add(jTextField2);
         jTextField2.setBounds(280, 250, 150, 30);
         getContentPane().add(jTextField6);
@@ -211,15 +211,15 @@ public class cadastro_tarefas extends javax.swing.JFrame {
         getContentPane().add(jComboBox1);
         jComboBox1.setBounds(490, 190, 150, 30);
 
-        jComboBox2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Em espera" }));
-        jComboBox2.addActionListener(new java.awt.event.ActionListener() {
+        situacao_tarefa.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        situacao_tarefa.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Em espera" }));
+        situacao_tarefa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox2ActionPerformed(evt);
+                situacao_tarefaActionPerformed(evt);
             }
         });
-        getContentPane().add(jComboBox2);
-        jComboBox2.setBounds(490, 250, 150, 30);
+        getContentPane().add(situacao_tarefa);
+        situacao_tarefa.setBounds(490, 250, 150, 30);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -244,10 +244,10 @@ public class cadastro_tarefas extends javax.swing.JFrame {
             statement = conexao.prepareStatement(sql);
                       
           
-            statement.setString(1, jTextField1.getText());
+            statement.setString(1, nome_tarefa.getText());
             statement.setString(2, jTextField2.getText());    
             statement.setString(3, (String) jComboBox1.getSelectedItem());
-            statement.setString(4, (String) jComboBox2.getSelectedItem());
+            statement.setString(4, (String) situacao_tarefa.getSelectedItem());
             statement.setString(5, jTextField6.getText());
             
             statement.execute();
@@ -259,17 +259,17 @@ public class cadastro_tarefas extends javax.swing.JFrame {
             
     }//GEN-LAST:event_jButton4ActionPerformed
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void nome_tarefaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nome_tarefaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_nome_tarefaActionPerformed
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
       // TODO add your handling code here:
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
-    private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
+    private void situacao_tarefaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_situacao_tarefaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox2ActionPerformed
+    }//GEN-LAST:event_situacao_tarefaActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
   cadastro_tarefas.this.dispose();
@@ -330,7 +330,6 @@ cadastro_tarefas.this.dispose();
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -343,9 +342,10 @@ cadastro_tarefas.this.dispose();
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField6;
+    private javax.swing.JTextField nome_tarefa;
+    private javax.swing.JComboBox<String> situacao_tarefa;
     // End of variables declaration//GEN-END:variables
 
     private static class tarefas {
