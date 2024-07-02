@@ -4,17 +4,28 @@
  */
 package com.mycompany.mavenproject1;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author mdrumond
  */
 public class cadastro_tarefas extends javax.swing.JFrame {
 
+    private Object objeto1;
+
     /**
      * Creates new form cadastro_tarefas
      */
     public cadastro_tarefas() {
         initComponents();
+       
     }
 
     /**
@@ -38,17 +49,15 @@ public class cadastro_tarefas extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
         jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
-        jTextField5 = new javax.swing.JTextField();
         jTextField6 = new javax.swing.JTextField();
         jButton4 = new javax.swing.JButton();
+        jComboBox1 = new javax.swing.JComboBox<>();
+        jComboBox2 = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(850, 570));
@@ -63,12 +72,27 @@ public class cadastro_tarefas extends javax.swing.JFrame {
 
         jButton1.setBackground(new java.awt.Color(100, 100, 100));
         jButton1.setIcon(new javax.swing.ImageIcon("P:\\TURMAS\\HTC-DDS-17\\Marcus Guedes\\Controle_estoque\\meu_projeto\\mavenproject1\\src\\main\\java\\imagens\\tarefa.png")); // NOI18N
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton3.setBackground(new java.awt.Color(100, 100, 100));
         jButton3.setIcon(new javax.swing.ImageIcon("P:\\TURMAS\\HTC-DDS-17\\Marcus Guedes\\Controle_estoque\\meu_projeto\\mavenproject1\\src\\main\\java\\imagens\\projeto.png")); // NOI18N
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jButton2.setBackground(new java.awt.Color(100, 100, 100));
         jButton2.setIcon(new javax.swing.ImageIcon("P:\\TURMAS\\HTC-DDS-17\\Marcus Guedes\\Controle_estoque\\meu_projeto\\mavenproject1\\src\\main\\java\\imagens\\situa_tarefa.png")); // NOI18N
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jLabel3.setText("Cadastro de projetos");
 
@@ -138,15 +162,10 @@ public class cadastro_tarefas extends javax.swing.JFrame {
         getContentPane().add(jLabel8);
         jLabel8.setBounds(280, 230, 150, 17);
 
-        jLabel9.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        jLabel9.setText("Data limite");
-        getContentPane().add(jLabel9);
-        jLabel9.setBounds(280, 290, 80, 20);
-
         jLabel10.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel10.setText("Projeto");
         getContentPane().add(jLabel10);
-        jLabel10.setBounds(490, 290, 51, 17);
+        jLabel10.setBounds(280, 290, 51, 17);
 
         jLabel11.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel11.setText("Prioridade");
@@ -157,24 +176,18 @@ public class cadastro_tarefas extends javax.swing.JFrame {
         jLabel12.setText("Situação");
         getContentPane().add(jLabel12);
         jLabel12.setBounds(490, 230, 60, 17);
+
+        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField1ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jTextField1);
         jTextField1.setBounds(280, 190, 150, 30);
         getContentPane().add(jTextField2);
         jTextField2.setBounds(280, 250, 150, 30);
-
-        jTextField3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField3ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jTextField3);
-        jTextField3.setBounds(280, 310, 150, 30);
-        getContentPane().add(jTextField4);
-        jTextField4.setBounds(490, 190, 150, 30);
-        getContentPane().add(jTextField5);
-        jTextField5.setBounds(490, 250, 150, 30);
         getContentPane().add(jTextField6);
-        jTextField6.setBounds(490, 310, 150, 30);
+        jTextField6.setBounds(280, 310, 150, 30);
 
         jButton4.setBackground(new java.awt.Color(112, 92, 239));
         jButton4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -188,16 +201,93 @@ public class cadastro_tarefas extends javax.swing.JFrame {
         getContentPane().add(jButton4);
         jButton4.setBounds(400, 380, 120, 40);
 
+        jComboBox1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Alta", "Média", "Baixa" }));
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox1ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jComboBox1);
+        jComboBox1.setBounds(490, 190, 150, 30);
+
+        jComboBox2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Em espera" }));
+        jComboBox2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox2ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jComboBox2);
+        jComboBox2.setBounds(490, 250, 150, 30);
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField3ActionPerformed
-
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        // TODO add your handling code here:
+ try {
+            // TODO add your handling code here:
+          String[] prioridade = { "Alta", "Média", "Baixa"};
+
+
+            Connection conexao = null;
+            PreparedStatement statement = null;
+            
+            String url = "jdbc:mysql://localhost/meu_projeto";
+            String meu_projeto = "root";
+            String senha = "";
+            
+            
+            conexao = DriverManager.getConnection(url, meu_projeto, senha);
+            
+            String sql = "INSERT INTO tarefas (nome, descricao, prioridade, situacao, projeto_id) VALUES (?,?,?,?,?)";
+            statement = conexao.prepareStatement(sql);
+                      
+          
+            statement.setString(1, jTextField1.getText());
+            statement.setString(2, jTextField2.getText());    
+            statement.setString(3, (String) jComboBox1.getSelectedItem());
+            statement.setString(4, (String) jComboBox2.getSelectedItem());
+            statement.setString(5, jTextField6.getText());
+            
+            statement.execute();
+            JOptionPane.showMessageDialog(null, "Dados inseridos com sucesso.");
+            statement.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(tarefas.class.getName()).log(Level.SEVERE, null, ex);
+        }
+            
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField1ActionPerformed
+
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+      // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBox1ActionPerformed
+
+    private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBox2ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+  cadastro_tarefas.this.dispose();
+   cadastro_projetos objeto1 = new cadastro_projetos(); 
+   objeto1.setVisible(true);        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+   cadastro_tarefas.this.dispose();
+   cadastro_tarefas objeto2 = new cadastro_tarefas(); 
+   objeto2.setVisible(true);        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+cadastro_tarefas.this.dispose();
+   alterar_situacao objeto3 = new alterar_situacao(); 
+   objeto3.setVisible(true);        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -239,6 +329,8 @@ public class cadastro_tarefas extends javax.swing.JFrame {
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
+    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -250,13 +342,15 @@ public class cadastro_tarefas extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
     private javax.swing.JTextField jTextField6;
     // End of variables declaration//GEN-END:variables
+
+    private static class tarefas {
+
+        public tarefas() {
+        }
+    }
 }
