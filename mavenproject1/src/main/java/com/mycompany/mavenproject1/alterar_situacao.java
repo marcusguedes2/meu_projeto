@@ -41,7 +41,6 @@ public class alterar_situacao extends javax.swing.JFrame {
         jButton4 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(850, 570));
 
         jPanel1.setBackground(new java.awt.Color(170, 170, 170));
 
@@ -52,12 +51,27 @@ public class alterar_situacao extends javax.swing.JFrame {
 
         jButton1.setBackground(new java.awt.Color(100, 100, 100));
         jButton1.setIcon(new javax.swing.ImageIcon("P:\\TURMAS\\HTC-DDS-17\\Marcus Guedes\\Controle_estoque\\meu_projeto\\mavenproject1\\src\\main\\java\\imagens\\tarefa.png")); // NOI18N
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setBackground(new java.awt.Color(100, 100, 100));
         jButton2.setIcon(new javax.swing.ImageIcon("P:\\TURMAS\\HTC-DDS-17\\Marcus Guedes\\Controle_estoque\\meu_projeto\\mavenproject1\\src\\main\\java\\imagens\\projeto.png")); // NOI18N
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton3.setBackground(new java.awt.Color(100, 100, 100));
         jButton3.setIcon(new javax.swing.ImageIcon("P:\\TURMAS\\HTC-DDS-17\\Marcus Guedes\\Controle_estoque\\meu_projeto\\mavenproject1\\src\\main\\java\\imagens\\situa_tarefa.png")); // NOI18N
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jLabel3.setText("Cadastro de projetos");
 
@@ -121,6 +135,11 @@ public class alterar_situacao extends javax.swing.JFrame {
                 "Title 1", "Title 2"
             }
         ));
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
 
         jButton4.setBackground(new java.awt.Color(112, 92, 239));
@@ -164,6 +183,28 @@ public class alterar_situacao extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+ alterar_situacao.this.dispose();
+   cadastro_projetos objeto3 = new cadastro_projetos(); 
+   objeto3.setVisible(true);        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+alterar_situacao.this.dispose();
+   cadastro_tarefas objeto3 = new cadastro_tarefas(); 
+   objeto3.setVisible(true);         // TODO add your handling code here:
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+alterar_situacao.this.dispose();
+   alterar_situacao objeto3 = new alterar_situacao(); 
+   objeto3.setVisible(true);          // TODO add your handling code here:
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+
+    }//GEN-LAST:event_jTable1MouseClicked
 
     /**
      * @param args the command line arguments
