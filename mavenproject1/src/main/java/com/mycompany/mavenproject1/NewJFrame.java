@@ -208,7 +208,9 @@ public class NewJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
+   NewJFrame.this.dispose();
+   alterar_senha objeto3 = new alterar_senha(); 
+   objeto3.setVisible(true); 
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**

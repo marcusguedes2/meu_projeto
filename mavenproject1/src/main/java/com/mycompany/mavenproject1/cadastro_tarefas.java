@@ -60,6 +60,7 @@ public class cadastro_tarefas extends javax.swing.JFrame {
         situacao_tarefa = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMinimumSize(new java.awt.Dimension(850, 570));
         setPreferredSize(new java.awt.Dimension(850, 570));
         getContentPane().setLayout(null);
 
@@ -212,7 +213,7 @@ public class cadastro_tarefas extends javax.swing.JFrame {
         jComboBox1.setBounds(490, 190, 150, 30);
 
         situacao_tarefa.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        situacao_tarefa.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Em espera" }));
+        situacao_tarefa.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Em espera", "Em andamento", "Paralisada" }));
         situacao_tarefa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 situacao_tarefaActionPerformed(evt);
@@ -228,7 +229,7 @@ public class cadastro_tarefas extends javax.swing.JFrame {
  try {
             // TODO add your handling code here:
           String[] prioridade = { "Alta", "Média", "Baixa"};
-
+          String[] situacao = {"Em espera", "Em andamento", "Paralisada"};
 
             Connection conexao = null;
             PreparedStatement statement = null;

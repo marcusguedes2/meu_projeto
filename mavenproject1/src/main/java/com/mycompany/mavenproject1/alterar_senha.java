@@ -4,6 +4,14 @@
  */
 package com.mycompany.mavenproject1;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author mdrumond
@@ -37,7 +45,8 @@ public class alterar_senha extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(850, 500));
+        setMinimumSize(new java.awt.Dimension(850, 570));
+        setPreferredSize(new java.awt.Dimension(850, 570));
         getContentPane().setLayout(null);
 
         jLabel2.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
@@ -73,7 +82,12 @@ public class alterar_senha extends javax.swing.JFrame {
         jButton1.setBackground(new java.awt.Color(112, 92, 239));
         jButton1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("CANCELAR");
+        jButton1.setText("VOLTAR");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButton1);
         jButton1.setBounds(270, 330, 110, 30);
 
@@ -81,10 +95,15 @@ public class alterar_senha extends javax.swing.JFrame {
         jButton2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jButton2.setForeground(new java.awt.Color(255, 255, 255));
         jButton2.setText("SALVAR");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButton2);
         jButton2.setBounds(440, 330, 110, 30);
 
-        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/tarefa2.png"))); // NOI18N
+        jLabel6.setIcon(new javax.swing.ImageIcon("P:\\TURMAS\\HTC-DDS-17\\Marcus Guedes\\Controle_estoque\\meu_projeto\\mavenproject1\\src\\main\\java\\imagens\\tarefa2.png")); // NOI18N
         getContentPane().add(jLabel6);
         jLabel6.setBounds(10, 10, 90, 90);
 
@@ -94,6 +113,42 @@ public class alterar_senha extends javax.swing.JFrame {
     private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField2ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+alterar_senha.this.dispose();
+   NewJFrame objeto1 = new NewJFrame(); 
+   objeto1.setVisible(true);        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+       try {
+            Connection conexao = null;
+            PreparedStatement statement = null;
+            
+            String url = "jdbc:mysql://localhost/meu_projeto";
+            String usuario = "root";
+            String senha = "";
+
+            conexao = DriverManager.getConnection(url,usuario,senha);
+            
+            String sql = "UPDATE usuarios SET senha = ? where email = ?";
+            //   statement = conexao.prepareStatement(sql);
+            statement = conexao.prepareStatement(sql);
+            statement.setString(1, jTextField1.getText());//
+            statement.setString(2, jTextField2.getText());//nome
+
+         
+            
+            
+            statement.execute();
+            JOptionPane.showMessageDialog(null,"Senha Atualizada Com Sucesso!!");
+            statement.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(alterar_senha.class.getName()).log(Level.SEVERE, null, ex);
+        }        
+         
+            
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
